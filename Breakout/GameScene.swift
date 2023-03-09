@@ -64,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.physicsBody?.friction = 0
         ball.physicsBody?.affectedByGravity = false
         ball.physicsBody?.restitution = 1
-
+        
         ball.physicsBody?.linearDamping = 0
         ball.physicsBody?.contactTestBitMask = (ball.physicsBody?.collisionBitMask)!
         addChild(ball) //add ball object to the view
@@ -100,8 +100,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(loseZone)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            paddle.position.x = location.x
+        }
+    }
     
-    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            paddle.position.x = location.x
+        }
+    }
 }
 
 
